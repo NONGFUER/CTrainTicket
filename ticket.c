@@ -23,12 +23,30 @@ void user_query_booked_tickets(user *current_user) {
         return;
     }
     
-    printf("\n=== 您的已订车票列表 (共%d张) ===\n", current_user->ticket_count);
+    int valid_ticket_count = 0;
+    
+    // 先统计有效的已订车票数量
     for (int i = 0; i < current_user->ticket_count; i++) {
         ticket *t = &current_user->booked_tickets[i];
-        printf("%d. 车次：%s | %s → %s | 出发：%s | 票价：%.2f元 | 座位：%s | 订票日期：%s\n",
-               i+1, t->train_number, t->start_station, t->end_station,
-               t->departure_time, t->price, t->seat_number, t->booking_date);
+        if (t->is_booked) {
+            valid_ticket_count++;
+        }
+    }
+    
+    if (valid_ticket_count == 0) {
+        printf("您当前没有有效的已订车票。\n");
+        return;
+    }
+    
+    printf("\n=== 您的有效已订车票列表 (共%d张) ===\n", valid_ticket_count);
+    for (int i = 0; i < current_user->ticket_count; i++) {
+        ticket *t = &current_user->booked_tickets[i];
+        if (t->is_booked) {
+            printf("%d. 车次：%s | %s → %s | 出发：%s | 票价：%.2f元 | 座位：%s | 订票日期：%s | 状态：%s\n",
+                   i+1, t->train_number, t->start_station, t->end_station,
+                   t->departure_time, t->price, t->seat_number, t->booking_date,
+                   t->is_booked ? "有效" : "已退票");
+        }
     }
 }
 

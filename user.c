@@ -132,10 +132,20 @@ void user_view_details(user *current_user) {
     printf("用户名：%s\n", current_user->username);
     printf("身份证号：%s\n", current_user->id_card);
     printf("密码：%s\n", current_user->password);
-    printf("已订车票数量：%d\n", current_user->ticket_count);
+    
+    // 计算有效的已订票数
+    int valid_ticket_count = 0;
+    for (int i = 0; i < current_user->ticket_count; i++) {
+        if (current_user->booked_tickets[i].is_booked) {
+            valid_ticket_count++;
+        }
+    }
+    
+    printf("总订票记录数：%d\n", current_user->ticket_count);
+    printf("当前有效车票数：%d\n", valid_ticket_count);
     
     if (current_user->ticket_count > 0) {
-        printf("\n=== 已订车票列表 ===\n");
+        printf("\n=== 车票记录列表 ===\n");
         for (int i = 0; i < current_user->ticket_count; i++) {
             printf("%d. 车次：%s | 座位号：%s | 状态：%s\n", 
                    i+1, current_user->booked_tickets[i].train_number,

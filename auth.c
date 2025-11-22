@@ -143,6 +143,7 @@ void register_user()
     {
         printf("请再输入一次密码：\n");
         scanf("%s",new_user.password);
+        clear_input_buffer();
         if(strcmp(temp_pwd,new_user.password) == 0){
             printf("注册成功！\n");
             printf("用户名：%s\n",new_user.username);
@@ -151,7 +152,7 @@ void register_user()
             //保存用户信息到文件
             save_new_user(&new_user);
             //注册成功后返回主菜单
-            menu();
+            menu_choice();
             break;
         }
         else{
