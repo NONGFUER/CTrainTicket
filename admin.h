@@ -8,7 +8,7 @@
 void admin_menu_choice();
 
 // 管理旅客用户信息功能
-void admin_manage_users();
+void admin_manage_users();//  
 void admin_user_query();
 void admin_user_list();
 void admin_user_add();

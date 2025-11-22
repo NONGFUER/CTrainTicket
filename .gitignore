@@ -1,0 +1,43 @@
+# 编译生成的文件
+*.o
+*.exe
+*.out
+*.a
+*.so
+*.dll
+
+# 可执行文件
+progress
+train_ticket.exe
+
+# 数据文件（如果这些是运行时生成的数据）
+train_info.txt
+user_info.txt
+
+# 编译目录
+build/
+dist/
+bin/
+obj/
+
+# IDE相关文件
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 操作系统生成的文件
+.DS_Store
+Thumbs.db
+
+# 日志文件
+*.log
+
+# 临时文件
+*.tmp
+*.temp
+
+# 备份文件
+*.bak
+*.backup
